@@ -35,7 +35,9 @@
             //{ "Amount":123, "Recipient":"ebeabf5cc1d54abdbca5a8fe9493b479", "Sender":"31de2e0ef1cb4937830fcfd5d2b3b24f" }
             case "/transactions/new":
               if (request.HttpMethod != HttpMethod.Post.Method)
+              {
                 return $"{new HttpResponseMessage(HttpStatusCode.MethodNotAllowed)}";
+              }
 
               json = new StreamReader(request.InputStream).ReadToEnd();
               Transaction trx = JsonConvert.DeserializeObject<Transaction>(json);
@@ -50,7 +52,9 @@
             //{ "Urls": ["localhost:54321", "localhost:54345", "localhost:12321"] }
             case "/nodes/register":
               if (request.HttpMethod != HttpMethod.Post.Method)
+              {
                 return $"{new HttpResponseMessage(HttpStatusCode.MethodNotAllowed)}";
+              }
 
               json = new StreamReader(request.InputStream).ReadToEnd();
               var urlList = new { Urls = new string[0] };

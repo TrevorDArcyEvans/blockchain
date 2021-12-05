@@ -81,7 +81,7 @@
             length = 0
           };
           var json = new StreamReader(response.GetResponseStream()).ReadToEnd();
-          var data = JsonConvert.DeserializeAnonymousType(json, model);
+          var data = JsonConvert.DeserializeAnonymousType(json, model);  // TODO    stringly typed
 
           if (data.chain.Count > _chain.Count && IsValidChain(data.chain))
           {
@@ -172,7 +172,7 @@
         PreviousHash = block.PreviousHash
       };
 
-      return JsonConvert.SerializeObject(response);
+      return JsonConvert.SerializeObject(response);  // TODO    stringly typed
     }
 
     internal string GetFullChain()
@@ -183,7 +183,7 @@
         length = _chain.Count
       };
 
-      return JsonConvert.SerializeObject(response);
+      return JsonConvert.SerializeObject(response);  // TODO    stringly typed
     }
 
     internal string RegisterNodes(string[] nodes)
@@ -198,7 +198,7 @@
 
       builder.Insert(0, $"{nodes.Count()} new nodes have been added: ");
       var result = builder.ToString();
-      return result.Substring(0, result.Length - 2);
+      return result.Substring(0, result.Length - 2);  // TODO    stringly typed
     }
 
     internal string Consensus()
@@ -212,7 +212,7 @@
         Chain = _chain
       };
 
-      return JsonConvert.SerializeObject(response);
+      return JsonConvert.SerializeObject(response);  // TODO    stringly typed
     }
 
     internal int CreateTransaction(string sender, string recipient, int amount)

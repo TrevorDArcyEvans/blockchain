@@ -32,7 +32,7 @@
       _nodes.Add(new Node { Address = new Uri(address) });
     }
 
-    private bool IsValidChain(List<Block> chain)
+    private static bool IsValidChain(List<Block> chain)
     {
       Block block;
       var lastBlock = chain.First();
@@ -126,20 +126,20 @@
       return proof;
     }
 
-    private bool IsValidProof(int lastProof, int proof, string previousHash)
+    private static bool IsValidProof(int lastProof, int proof, string previousHash)
     {
       var guess = $"{lastProof}{proof}{previousHash}";
       var result = GetSha256(guess);
       return result.StartsWith("0000");
     }
 
-    private string GetHash(Block block)
+    private static string GetHash(Block block)
     {
       var blockText = JsonConvert.SerializeObject(block);
       return GetSha256(blockText);
     }
 
-    private string GetSha256(string data)
+    private static string GetSha256(string data)
     {
       var sha256 = new SHA256Managed();
       var hashBuilder = new StringBuilder();
@@ -147,7 +147,7 @@
       var bytes = Encoding.Unicode.GetBytes(data);
       var hash = sha256.ComputeHash(bytes);
 
-      foreach (byte x in hash)
+      foreach (var x in hash)
       {
         hashBuilder.Append($"{x:x2}");
       }

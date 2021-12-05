@@ -66,7 +66,6 @@
     private bool ResolveConflicts()
     {
       List<Block> newChain = null;
-      var maxLength = _chain.Count;
 
       foreach (Node node in _nodes)
       {
@@ -86,7 +85,6 @@
 
           if (data.chain.Count > _chain.Count && IsValidChain(data.chain))
           {
-            maxLength = data.chain.Count;
             newChain = data.chain;
           }
         }
